@@ -45,3 +45,4 @@ Temporary Items
 
 *.classpath
 *.project
+sample-projects/code-generator/target/classes/bindings.xjb
