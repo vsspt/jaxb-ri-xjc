@@ -70,22 +70,22 @@ public class PluginImpl extends AbstractVssPluginImpl {
   }
 
   private void createEqualsMethod(final JDefinedClass implClass, final List<JFieldVar> fields, final boolean isSuperClass) {
-    final JMethod mehtod = implClass.method(JMod.PUBLIC, implClass.owner().BOOLEAN, OPERATION_EQUALS);
-    mehtod.annotate(Override.class);
+    final JMethod method = implClass.method(JMod.PUBLIC, implClass.owner().BOOLEAN, OPERATION_EQUALS);
+    method.annotate(Override.class);
 
-    final JVar vObj = mehtod.param(Object.class, OBJ);
-    final JConditional condMe = mehtod.body()._if(JExpr._this().eq(vObj));
+    final JVar vObj = method.param(Object.class, OBJ);
+    final JConditional condMe = method.body()._if(JExpr._this().eq(vObj));
     condMe._then()._return(JExpr.TRUE);
 
-    final JConditional condNull = mehtod.body()._if(vObj.eq(JExpr._null()));
+    final JConditional condNull = method.body()._if(vObj.eq(JExpr._null()));
     condNull._then()._return(JExpr.FALSE);
 
     if (isSuperClass) {
-      final JConditional condSuper = mehtod.body()._if(JExpr._super().invoke(OPERATION_EQUALS).arg(vObj).eq(JExpr.FALSE));
+      final JConditional condSuper = method.body()._if(JExpr._super().invoke(OPERATION_EQUALS).arg(vObj).eq(JExpr.FALSE));
       condSuper._then()._return(JExpr.FALSE);
     }
 
-    final JVar vOther = mehtod.body().decl(implClass, OTHER, JExpr.cast(implClass, vObj));
+    final JVar vOther = method.body().decl(implClass, OTHER, JExpr.cast(implClass, vObj));
     final JClass objectsClass = implClass.owner().ref(Objects.class);
 
     final List<JFieldVar> clonedList = new ArrayList<JFieldVar>(fields.size());
@@ -99,7 +99,7 @@ public class PluginImpl extends AbstractVssPluginImpl {
       invocation = JOp.cand(invocation, block.staticInvoke(objectsClass, OPERATION_EQUALS).arg(JExpr.ref(jFieldVar.name())).arg(vOther.ref(jFieldVar.name())));
     }
 
-    mehtod.body()._return(invocation);
+    method.body()._return(invocation);
 
   }
 

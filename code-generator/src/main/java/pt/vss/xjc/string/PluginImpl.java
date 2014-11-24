@@ -48,8 +48,8 @@ public class PluginImpl extends AbstractVssPluginImpl {
 
     final JDefinedClass implClass = clazz.getClassOutline().implClass;
 
-    final JMethod mehtod = implClass.method(JMod.PUBLIC, String.class, OPERATION);
-    mehtod.annotate(Override.class);
+    final JMethod method = implClass.method(JMod.PUBLIC, String.class, OPERATION);
+    method.annotate(Override.class);
 
     JExpression invocation = null;
 
@@ -80,7 +80,7 @@ public class PluginImpl extends AbstractVssPluginImpl {
     }
 
     final JExpression returnValue = invocation == null ? JExpr.lit("") : invocation;
-    mehtod.body()._return(returnValue);
+    method.body()._return(returnValue);
   }
 
 }
