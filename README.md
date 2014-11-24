@@ -8,16 +8,16 @@ Usage overview
 ===========
 
 toString : 
-- By default, uses all the fields to generate toString
-- Use @ExcludeOnToString annotation to exclude fields, using binding files or directly in schema (using annox syntax).
+- By default, uses all the fields to generate toString,
+- Use @ExcludeOnToString annotation to exclude fields,
 - Activate the plugin using -XvsToString-switch.
 
 equals and hashCode :
-- Use @IncludeOnEqualsAndHash annotation to include fields, using binding files or directly in schema (using annox syntax).
+- Use @IncludeOnEqualsAndHash annotation to include fields,
 - Activate the plugin using -XvsEqualsHashCode-switch.
 
 Serializable
-- Generates ... "implements Serializable" in all classes.
+- Generates ... "implements Serializable" in all classes,
 - Activate the plugin using -XvsSerializable-switch.
 
 Current limitations
