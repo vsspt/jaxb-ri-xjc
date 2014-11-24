@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxb:bindings
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:annox="http://annox.dev.java.net"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
+    jaxb:extensionBindingPrefixes="xjc annox"
+    version="2.1">
+
+    <jaxb:bindings schemaLocation="User.xsd" node="/xsd:schema">
+
+        <!-- Annotate Abstract Class -->
+        <jaxb:bindings node="xsd:complexType[@name='AbstractEntity']/xsd:attribute[@name='id']">
+            <annox:annotate target="field">@pt.vss.xjc.annotation.IncludeOnEqualsAndHash</annox:annotate>
+        </jaxb:bindings>
+
+        <!-- Annotate Class User -->        
+        <jaxb:bindings node="xsd:element[@name='User']/xsd:complexType/xsd:complexContent/xsd:extension/xsd:sequence/xsd:element[@name='username']">
+            <annox:annotate target="field">@pt.vss.xjc.annotation.IncludeOnEqualsAndHash</annox:annotate>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="xsd:element[@name='User']/xsd:complexType/xsd:complexContent/xsd:extension/xsd:sequence/xsd:element[@name='password']">
+            <annox:annotate target="field">@pt.vss.xjc.annotation.ExcludeOnToString</annox:annotate>
+        </jaxb:bindings>
+
+    </jaxb:bindings>
+
+</jaxb:bindings>
