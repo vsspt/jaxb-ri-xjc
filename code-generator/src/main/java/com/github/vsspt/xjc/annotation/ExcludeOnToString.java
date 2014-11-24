@@ -1,4 +1,4 @@
-package pt.vss.xjc.annotation;
+package com.github.vsspt.xjc.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

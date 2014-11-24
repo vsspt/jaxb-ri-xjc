@@ -1,4 +1,4 @@
-package pt.vss.xjc.model;
+package com.github.vsspt.xjc.model;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,13 +1,13 @@
-package pt.vss.xjc.equals;
+package com.github.vsspt.xjc.equals;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import pt.vss.xjc.AbstractVssPluginImpl;
-import pt.vss.xjc.annotation.IncludeOnEqualsAndHash;
-import pt.vss.xjc.model.ClassRepresentation;
 
+import com.github.vsspt.xjc.AbstractVssPluginImpl;
+import com.github.vsspt.xjc.annotation.IncludeOnEqualsAndHash;
+import com.github.vsspt.xjc.model.ClassRepresentation;
 import com.sun.codemodel.JBlock;
 import com.sun.codemodel.JClass;
 import com.sun.codemodel.JConditional;

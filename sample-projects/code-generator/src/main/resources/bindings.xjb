@@ -12,16 +12,16 @@
 
         <!-- Annotate Abstract Class -->
         <jaxb:bindings node="xsd:complexType[@name='AbstractEntity']/xsd:attribute[@name='id']">
-            <annox:annotate target="field">@pt.vss.xjc.annotation.IncludeOnEqualsAndHash</annox:annotate>
+            <annox:annotate target="field">@com.github.vsspt.xjc.annotation.IncludeOnEqualsAndHash</annox:annotate>
         </jaxb:bindings>
 
         <!-- Annotate Class User -->        
         <jaxb:bindings node="xsd:element[@name='User']/xsd:complexType/xsd:complexContent/xsd:extension/xsd:sequence/xsd:element[@name='username']">
-            <annox:annotate target="field">@pt.vss.xjc.annotation.IncludeOnEqualsAndHash</annox:annotate>
+            <annox:annotate target="field">@com.github.vsspt.xjc.annotation.IncludeOnEqualsAndHash</annox:annotate>
         </jaxb:bindings>
 
         <jaxb:bindings node="xsd:element[@name='User']/xsd:complexType/xsd:complexContent/xsd:extension/xsd:sequence/xsd:element[@name='password']">
-            <annox:annotate target="field">@pt.vss.xjc.annotation.ExcludeOnToString</annox:annotate>
+            <annox:annotate target="field">@com.github.vsspt.xjc.annotation.ExcludeOnToString</annox:annotate>
         </jaxb:bindings>
 
     </jaxb:bindings>

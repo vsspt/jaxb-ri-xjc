@@ -1,13 +1,13 @@
-package pt.vss.xjc.string;
+package com.github.vsspt.xjc.string;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import pt.vss.xjc.AbstractVssPluginImpl;
-import pt.vss.xjc.annotation.ExcludeOnToString;
-import pt.vss.xjc.model.ClassRepresentation;
 
+import com.github.vsspt.xjc.AbstractVssPluginImpl;
+import com.github.vsspt.xjc.annotation.ExcludeOnToString;
+import com.github.vsspt.xjc.model.ClassRepresentation;
 import com.google.common.collect.Iterables;
 import com.sun.codemodel.JDefinedClass;
 import com.sun.codemodel.JExpr;

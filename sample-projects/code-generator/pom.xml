@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
-	<groupId>pt.vss.xjc</groupId>   
-	<artifactId>code-generator-tests</artifactId>	
+	<groupId>com.github.vsspt</groupId>   
+	<artifactId>xjc-code-generator-tests</artifactId>	
 	<version>1.0</version>
    <packaging>jar</packaging>
    <name>Jaxb-Ri Plugin - toString, equals and hashCode Generation Test Project</name>
-   <url>http://maven.apache.org</url>
+   <url>https://github.com/vsspt/jaxb-ri-xjc/tree/master/sample-projects/code-generator</url>
    <dependencies>
       <dependency>	  
-         <groupId>pt.vss.xjc</groupId>
-         <artifactId>code-generator</artifactId>
+         <groupId>com.github.vsspt</groupId>
+         <artifactId>xjc-code-generator</artifactId>
 		 <version>${project.version}</version>
       </dependency>		
    </dependencies>
@@ -40,8 +40,8 @@
                      <version>1.0.0</version>
                   </plugin>
                   <plugin>
-                     <groupId>pt.vss.xjc</groupId>
-                     <artifactId>code-generator</artifactId>
+                     <groupId>com.github.vsspt</groupId>
+                     <artifactId>xjc-code-generator</artifactId>
 					 <version>${project.version}</version>
                   </plugin>
                </plugins>

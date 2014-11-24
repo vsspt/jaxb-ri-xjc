@@ -1,4 +1,4 @@
-package pt.vss.xjc;
+package com.github.vsspt.xjc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,8 +8,8 @@ import java.util.Map;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 
-import pt.vss.xjc.model.ClassRepresentation;
 
+import com.github.vsspt.xjc.model.ClassRepresentation;
 import com.sun.codemodel.JDefinedClass;
 import com.sun.codemodel.JFieldVar;
 import com.sun.tools.xjc.Options;

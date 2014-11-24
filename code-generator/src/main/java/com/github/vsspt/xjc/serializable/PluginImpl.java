@@ -1,11 +1,11 @@
-package pt.vss.xjc.serializable;
+package com.github.vsspt.xjc.serializable;
 
 import java.io.Serializable;
 import java.util.List;
 
-import pt.vss.xjc.AbstractVssPluginImpl;
-import pt.vss.xjc.model.ClassRepresentation;
 
+import com.github.vsspt.xjc.AbstractVssPluginImpl;
+import com.github.vsspt.xjc.model.ClassRepresentation;
 import com.sun.codemodel.JDefinedClass;
 import com.sun.codemodel.JFieldVar;
 
