@@ -1,8 +1,8 @@
 jaxb-ri-xjc
 ===========
 
-Generates toString, equals and hashCode methods on JAXB generated classes
-Generates Serializable
+- Generates toString, equals and hashCode methods on JAXB generated classes
+- Generates Serializable
 
 Usage overview
 ===========
