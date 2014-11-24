@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import pt.vss.xjc.annotation.ExcludeOnToString;
-
 import com.sun.codemodel.JAnnotationUse;
 import com.sun.codemodel.JFieldVar;
 import com.sun.tools.xjc.outline.ClassOutline;
@@ -17,14 +15,16 @@ public class ClassRepresentation {
   private final String name;
   private final List<String> classFields = new ArrayList<String>();
   private final List<String> fieldsFromAnnotations = new ArrayList<String>();
+  private final boolean checkAnnotationfields;
 
-  public ClassRepresentation(final ClassOutline classOutline, final String annotationOption) {
+  public ClassRepresentation(final ClassOutline classOutline, final String annotationOption, final boolean checkAnnotationfields) {
     this.classOutline = classOutline;
     this.annotationOption = annotationOption;
     name = classOutline.implClass.name();
+    this.checkAnnotationfields = checkAnnotationfields;
     process();
   }
-  
+
   public ClassOutline getClassOutline() {
     return classOutline;
   }
@@ -42,7 +42,7 @@ public class ClassRepresentation {
   }
 
   public boolean isValidForAugument() {
-    return ExcludeOnToString.class.getName().equals(annotationOption) ? true : !fieldsFromAnnotations.isEmpty();
+    return checkAnnotationfields == false ? true : !fieldsFromAnnotations.isEmpty();
   }
 
   @Override
@@ -70,7 +70,7 @@ public class ClassRepresentation {
   }
 
   private boolean isAnnotationEligible(final String annotationName) {
-    return annotationOption.equals(annotationName);
+    return annotationOption == null ? false : annotationOption.equals(annotationName);
   }
 
 }

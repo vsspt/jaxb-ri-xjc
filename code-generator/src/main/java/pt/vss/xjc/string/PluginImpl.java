@@ -37,6 +37,11 @@ public class PluginImpl extends AbstractVssPluginImpl {
   protected String getAnnotationName() {
     return ExcludeOnToString.class.getName();
   }
+  
+  @Override
+  protected boolean checkAnnotationsFields() {
+    return false;
+  }  
 
   @Override
   protected void generateMethod(final ClassRepresentation clazz, final List<JFieldVar> excludeFields, final boolean hasSuperClassFields) {

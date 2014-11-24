@@ -23,6 +23,8 @@ public abstract class AbstractVssPluginImpl extends Plugin {
   protected final static String SEPARATOR = ",";
 
   protected abstract String getAnnotationName();
+  
+  protected abstract boolean checkAnnotationsFields();  
 
   protected abstract void generateMethod(ClassRepresentation clazz, List<JFieldVar> fields, boolean hasSuperClassFields);
 
@@ -33,7 +35,7 @@ public abstract class AbstractVssPluginImpl extends Plugin {
 
     for (final ClassOutline classOutline : outline.getClasses()) {
 
-      final ClassRepresentation classRepresentation = new ClassRepresentation(classOutline, getAnnotationName());
+      final ClassRepresentation classRepresentation = new ClassRepresentation(classOutline, getAnnotationName(), checkAnnotationsFields());
 
       if (classRepresentation.isValidForAugument()) {
         classes.put(classRepresentation.getName(), classRepresentation);

@@ -31,6 +31,8 @@ public class PluginImpl extends AbstractVssPluginImpl {
   private static final String OPERATION_HASH_METHOD = "hash";
   private static final String OBJ = "obj";
   private static final String OTHER = "other";
+  private static final int IDX_TO_REMOVE = 0;
+  
 
 
   @Override
@@ -47,6 +49,11 @@ public class PluginImpl extends AbstractVssPluginImpl {
   protected String getAnnotationName() {
     return IncludeOnEqualsAndHash.class.getName();
   }
+  
+  @Override
+  protected boolean checkAnnotationsFields() {
+    return true;
+  }  
 
 
   @Override
@@ -84,7 +91,7 @@ public class PluginImpl extends AbstractVssPluginImpl {
     final List<JFieldVar> clonedList = new ArrayList<JFieldVar>(fields.size());
     clonedList.addAll(fields);
 
-    final JFieldVar first = clonedList.remove(0);
+    final JFieldVar first = clonedList.remove(IDX_TO_REMOVE);
     final JBlock block = new JBlock();
     JExpression invocation = block.staticInvoke(objectsClass, OPERATION_EQUALS).arg(JExpr.ref(first.name())).arg(vOther.ref(first.name()));
 
@@ -114,4 +121,5 @@ public class PluginImpl extends AbstractVssPluginImpl {
 
     method.body()._return(invocation);
   }
+
 }
