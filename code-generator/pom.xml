@@ -4,7 +4,7 @@
    <groupId>com.github.vsspt</groupId>
    <artifactId>xjc-code-generator</artifactId>
    <packaging>jar</packaging>
-   <version>1.0</version>
+   <version>1.0.0</version>
    <name>Jaxb-Ri Plugin - toString, equals and hashCode Generation</name>
    <url>https://github.com/vsspt/jaxb-ri-xjc</url>
    <properties>

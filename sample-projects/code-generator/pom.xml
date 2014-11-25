@@ -3,7 +3,7 @@
    <modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.vsspt</groupId>   
 	<artifactId>xjc-code-generator-tests</artifactId>	
-	<version>1.0</version>
+	<version>1.0.0</version>
    <packaging>jar</packaging>
    <name>Jaxb-Ri Plugin - toString, equals and hashCode Generation Test Project</name>
    <url>https://github.com/vsspt/jaxb-ri-xjc/tree/master/sample-projects/code-generator</url>
