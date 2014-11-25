@@ -1,39 +1,51 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.github.vsspt</groupId>
-  <artifactId>xjc-code-generator</artifactId>
-  <packaging>jar</packaging>
-  <version>1.0</version>
-  <name>Jaxb-Ri Plugin - toString, equals and hashCode Generation</name>
-  <url>https://github.com/vsspt/jaxb-ri-xjc</url>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>com.github.vsspt</groupId>
+   <artifactId>xjc-code-generator</artifactId>
+   <packaging>jar</packaging>
+   <version>1.0</version>
+   <name>Jaxb-Ri Plugin - toString, equals and hashCode Generation</name>
+   <url>https://github.com/vsspt/jaxb-ri-xjc</url>
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	  <java.version>1.7</java.version>
-	  <jaxb.xjcVersion>2.2.11</jaxb.xjcVersion>
-	  <jaxb2.basics.toolsVersion>0.9.1</jaxb2.basics.toolsVersion>
-	  <guavaVersion>18.0</guavaVersion>
-   </properties>  
-  <dependencies>
-	<dependency>
-		<groupId>com.sun.xml.bind</groupId>
-		<artifactId>jaxb-xjc</artifactId>
-		<version>${jaxb.xjcVersion}</version>
-		<scope>provided</scope>
-	</dependency>
-	<dependency>
-		<groupId>org.jvnet.jaxb2_commons</groupId>
-		<artifactId>jaxb2-basics-tools</artifactId>
-		<version>${jaxb2.basics.toolsVersion}</version>
-		<scope>provided</scope>		
-	</dependency>
-	<dependency>
-		<groupId>com.google.guava</groupId>
-		<artifactId>guava</artifactId>
-		<version>${guavaVersion}</version>
-	</dependency>
-  </dependencies>
-  <build>
-	<defaultGoal>install</defaultGoal>
-  </build>  
+      <java.version>1.7</java.version>
+      <jaxb.xjcVersion>2.2.11</jaxb.xjcVersion>
+      <jaxb2.basics.toolsVersion>0.9.1</jaxb2.basics.toolsVersion>
+      <guavaVersion>18.0</guavaVersion>
+   </properties>
+   <licenses>
+      <license>
+         <name>Apache License, Version 2.0</name>
+         <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+         <distribution>repo</distribution>
+      </license>
+   </licenses>
+   <scm>
+      <connection>scm:git:git@github.com:vsspt/jaxb-ri-xjc.git</connection>
+      <url>scm:git:git@github.com:vsspt/jaxb-ri-xjc.git</url>
+      <developerConnection>scm:git:git@github.com:vsspt/jaxb-ri-xjc.git</developerConnection>
+   </scm>
+   <dependencies>
+      <dependency>
+         <groupId>com.sun.xml.bind</groupId>
+         <artifactId>jaxb-xjc</artifactId>
+         <version>${jaxb.xjcVersion}</version>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jvnet.jaxb2_commons</groupId>
+         <artifactId>jaxb2-basics-tools</artifactId>
+         <version>${jaxb2.basics.toolsVersion}</version>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>com.google.guava</groupId>
+         <artifactId>guava</artifactId>
+         <version>${guavaVersion}</version>
+      </dependency>
+   </dependencies>
+   <build>
+      <defaultGoal>install</defaultGoal>
+   </build>
 </project>
