@@ -4,12 +4,23 @@
    <groupId>com.github.vsspt</groupId>
    <artifactId>jaxb-ri-xjc</artifactId>
    <packaging>jar</packaging>
-   <version>1.0.0-SNAPSHOT</version>
+   <version>1.0.0</version>
    <name>Jaxb-Ri Plugin - toString, equals and hashCode Generation</name>
+   <description>Generates toString, equals and hashCode methods on JAXB generated classes.</description>
    <url>https://github.com/vsspt/jaxb-ri-xjc</url>
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <java.version>1.7</java.version>
+      <source.version>1.7</source.version>
+      <target.version>1.7</target.version>
+      <!-- plugin versions -->
+      <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
+      <maven-gpg-plugin.version>1.5</maven-gpg-plugin.version>
+      <maven-javadoc-plugin.version>2.10.1</maven-javadoc-plugin.version>
+      <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
+      <maven-release-plugin.version>2.5.1</maven-release-plugin.version>
+      <maven-source-plugin.version>2.4</maven-source-plugin.version>
+      <!-- dependency versions -->
       <jaxb.xjcVersion>2.2.11</jaxb.xjcVersion>
       <jaxb2.basics.toolsVersion>0.9.1</jaxb2.basics.toolsVersion>
       <guavaVersion>18.0</guavaVersion>
@@ -21,11 +32,32 @@
          <distribution>repo</distribution>
       </license>
    </licenses>
+   <distributionManagement>
+      <snapshotRepository>
+         <id>ossrh</id>
+         <name>Maven Central Snapshot Repository</name>
+         <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      </snapshotRepository>
+      <repository>
+         <id>ossrh</id>
+         <name>Maven Central Staging Repository</name>
+         <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      </repository>
+   </distributionManagement>
    <scm>
       <connection>scm:git:https://github.com/vsspt/jaxb-ri-xjc.git</connection>
       <url>scm:git:https://github.com/vsspt/jaxb-ri-xjc.git</url>
       <developerConnection>scm:git:https://github.com/vsspt/jaxb-ri-xjc.git</developerConnection>
    </scm>
+   <developers>
+      <developer>
+         <name>VSS PT</name>
+         <url>https://github.com/vsspt</url>
+         <roles>
+            <role>developer</role>
+         </roles>
+      </developer>
+   </developers>
    <dependencies>
       <dependency>
          <groupId>com.sun.xml.bind</groupId>
@@ -45,51 +77,80 @@
          <version>${guavaVersion}</version>
       </dependency>
    </dependencies>
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven-compiler-plugin.version}</version>
+            <configuration>
+               <source>${source.version}</source>
+               <target>${target.version}</target>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>${maven-release-plugin.version}</version>
+            <configuration>
+               <autoVersionSubmodules>true</autoVersionSubmodules>
+               <useReleaseProfile>false</useReleaseProfile>
+               <releaseProfiles>release</releaseProfiles>
+               <goals>deploy</goals>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
    <profiles>
-    <!-- all plugins below are usually only required for release builds -->
-    <profile>
-      <id>release</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar-no-fork</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+      <profile>
+         <id>release</id>
+         <activation>
+            <activeByDefault>true</activeByDefault>
+         </activation>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-source-plugin</artifactId>
+                  <version>${maven-source-plugin.version}</version>
+                  <executions>
+                     <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                           <goal>jar-no-fork</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-javadoc-plugin</artifactId>
+                  <version>${maven-javadoc-plugin.version}</version>
+                  <executions>
+                     <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                           <goal>jar</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-gpg-plugin</artifactId>
+                  <version>${maven-gpg-plugin.version}</version>
+                  <executions>
+                     <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                           <goal>sign</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+   </profiles>
 </project>
