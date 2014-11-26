@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
-	<groupId>com.github.vsspt</groupId>   
-	<artifactId>xjc-code-generator-tests</artifactId>	
-	<version>1.0.0</version>
+   <groupId>com.github.vsspt</groupId>
+   <artifactId>xjc-code-generator-tests</artifactId>
+   <version>1.0.0</version>
    <packaging>jar</packaging>
    <name>Jaxb-Ri Plugin - toString, equals and hashCode Generation Test Project</name>
    <url>https://github.com/vsspt/jaxb-ri-xjc/tree/master/sample-projects/code-generator</url>
    <dependencies>
-      <dependency>	  
+      <dependency>
          <groupId>com.github.vsspt</groupId>
-         <artifactId>xjc-code-generator</artifactId>
-		 <version>${project.version}</version>
-      </dependency>		
+         <artifactId>jaxb-ri-xjc</artifactId>
+         <version>${project.version}</version>
+      </dependency>
    </dependencies>
    <build>
       <finalName>${project.artifactId}-${project.version}</finalName>
@@ -26,7 +26,7 @@
                   <arg>-Xannotate</arg>
                   <arg>-XvsEqualsHashCode</arg>
                   <arg>-XvsToString</arg>
-                  <arg>-XvsSerializable</arg>				  
+                  <arg>-XvsSerializable</arg>
                </args>
                <plugins>
                   <plugin>
@@ -41,8 +41,8 @@
                   </plugin>
                   <plugin>
                      <groupId>com.github.vsspt</groupId>
-                     <artifactId>xjc-code-generator</artifactId>
-					 <version>${project.version}</version>
+                     <artifactId>jaxb-ri-xjc</artifactId>
+                     <version>${project.version}</version>
                   </plugin>
                </plugins>
             </configuration>
