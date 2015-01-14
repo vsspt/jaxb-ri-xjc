@@ -23,6 +23,14 @@
         <jaxb:bindings node="xsd:element[@name='User']/xsd:complexType/xsd:complexContent/xsd:extension/xsd:sequence/xsd:element[@name='password']">
             <annox:annotate target="field">@com.github.vsspt.xjc.annotation.ExcludeOnToString</annox:annotate>
         </jaxb:bindings>
+        
+        <jaxb:bindings node="xsd:element[@name='User']/xsd:complexType/xsd:complexContent/xsd:extension/xsd:sequence/xsd:element[@name='roles']">
+            <annox:annotate target="field">@com.github.vsspt.xjc.annotation.Setter</annox:annotate>
+        </jaxb:bindings>  
+
+        <jaxb:bindings node="xsd:element[@name='User']/xsd:complexType/xsd:complexContent/xsd:extension/xsd:sequence/xsd:element[@name='permissions']">
+            <annox:annotate target="field">@com.github.vsspt.xjc.annotation.Setter</annox:annotate>
+        </jaxb:bindings> 		
 
     </jaxb:bindings>
 

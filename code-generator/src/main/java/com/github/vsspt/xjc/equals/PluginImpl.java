@@ -85,7 +85,7 @@ public class PluginImpl extends AbstractVssPluginImpl {
       condSuper._then()._return(JExpr.FALSE);
     }
 
-    final JVar vOther = method.body().decl(implClass, OTHER, JExpr.cast(implClass, vObj));
+    final JVar vOther = method.body().decl(JMod.FINAL, implClass, OTHER, JExpr.cast(implClass, vObj));
     final JClass objectsClass = implClass.owner().ref(Objects.class);
 
     final List<JFieldVar> clonedList = new ArrayList<JFieldVar>(fields.size());

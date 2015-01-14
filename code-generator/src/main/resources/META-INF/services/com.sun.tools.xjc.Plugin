@@ -1,3 +1,4 @@
 com.github.vsspt.xjc.equals.PluginImpl
 com.github.vsspt.xjc.string.PluginImpl
 com.github.vsspt.xjc.serializable.PluginImpl
+com.github.vsspt.xjc.setter.PluginImpl
