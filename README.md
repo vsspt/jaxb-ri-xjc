@@ -3,6 +3,7 @@ jaxb-ri-xjc
 
 - Generates toString, equals and hashCode methods on JAXB generated classes
 - Generates Serializable
+- Generates Setter methods for fields that implements the Collection interface,
 
 Usage overview
 ===========
@@ -19,6 +20,11 @@ equals and hashCode :
 Serializable
 - Generates ... "implements Serializable" in all classes,
 - Activate the plugin using -XvsSerializable-switch.
+
+Setter
+- Generates Setter methods for fields that implements the Collection interface (as XJC does not create them by default),
+- Activate the plugin using -XvsSetter,
+- Uses Guava ImmutableList.copyOf(x) for a safe copy.
 
 Current limitations
 ===========
@@ -55,6 +61,14 @@ Configuration
             <annox:annotate target="field">@pt.vss.xjc.annotation.ExcludeOnToString</annox:annotate>
         </jaxb:bindings>
 		
+        <jaxb:bindings node="xsd:element[@name='User']/xsd:complexType/xsd:complexContent/xsd:extension/xsd:sequence/xsd:element[@name='roles']">
+            <annox:annotate target="field">@com.github.vsspt.xjc.annotation.Setter</annox:annotate>
+        </jaxb:bindings>  
+
+        <jaxb:bindings node="xsd:element[@name='User']/xsd:complexType/xsd:complexContent/xsd:extension/xsd:sequence/xsd:element[@name='permissions']">
+            <annox:annotate target="field">@com.github.vsspt.xjc.annotation.Setter</annox:annotate>
+        </jaxb:bindings> 		
+		
     </jaxb:bindings>
 
 </jaxb:bindings>
@@ -72,6 +86,7 @@ Maven configuration
                <extension>true</extension>
                <args>
                   <arg>-Xannotate</arg>
+                  <arg>-XvsSetter</arg>  				  
                   <arg>-XvsEqualsHashCode</arg>
                   <arg>-XvsToString</arg>
                   <arg>-XvsSerializable</arg>
