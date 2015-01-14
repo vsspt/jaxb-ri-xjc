@@ -61,6 +61,8 @@ public class PluginImpl extends AbstractVssPluginImpl {
 
           final JMethod method = implClass.method(JMod.PUBLIC, Void.TYPE, OPERATION_PREFIX + capitalizeFirstLetter(field.name()));
           final JVar var = method.param(JMod.FINAL, field.type(), PARAM_NAME);
+          
+          //TODO: Verify if field implements the Collection interface
 
           final JBlock block = new JBlock();
           final JClass immutableListClass = implClass.owner().ref(ImmutableList.class);
