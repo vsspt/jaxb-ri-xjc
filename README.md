@@ -118,3 +118,14 @@ Maven configuration
             </executions>
          </plugin>
 ```
+
+Maven Dependency
+===========
+
+```xml
+    <dependency>
+	 <groupId>com.github.vsspt</groupId>
+	 <artifactId>jaxb-ri-xjc</artifactId>
+	 <version>1.0.0</version>
+	</dependency>
+```	
