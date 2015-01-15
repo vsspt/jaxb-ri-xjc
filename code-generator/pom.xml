@@ -4,7 +4,7 @@
    <groupId>com.github.vsspt</groupId>
    <artifactId>jaxb-ri-xjc</artifactId>
    <packaging>jar</packaging>
-   <version>1.1.0</version>
+   <version>1.1.1-SNAPSHOT</version>
    <name>Jaxb-Ri Plugin - toString, setter, equals and hashCode Generation</name>
    <description>Generates toString, setter, equals and hashCode methods on JAXB generated classes.</description>
    <url>https://github.com/vsspt/jaxb-ri-xjc</url>
@@ -64,6 +64,7 @@
          <groupId>com.sun.xml.bind</groupId>
          <artifactId>jaxb-core</artifactId>
          <version>${jaxb.coreVersion}</version>
+         <scope>provided</scope>		 
       </dependency>
       <dependency>
          <groupId>com.sun.xml.bind</groupId>
@@ -107,7 +108,6 @@
          </plugin>
       </plugins>
    </build>
-   <!--
    <profiles>
       <profile>
          <id>release</id>
@@ -139,6 +139,9 @@
                         <goals>
                            <goal>jar</goal>
                         </goals>
+                        <configuration>
+                           <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
                      </execution>
                   </executions>
                </plugin>
@@ -160,5 +163,4 @@
          </build>
       </profile>
    </profiles>
-   -->
 </project>
