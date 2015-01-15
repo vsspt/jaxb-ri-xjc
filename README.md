@@ -3,7 +3,7 @@ jaxb-ri-xjc
 
 - Generates toString, equals and hashCode methods on JAXB generated classes
 - Generates Serializable
-- Generates Setter methods for fields that implements the Collection interface,
+- Generates Setter methods for fields defined with (maxOccurs="unbounded"),
 
 Usage overview
 ===========
@@ -22,7 +22,7 @@ Serializable
 - Activate the plugin using -XvsSerializable-switch.
 
 Setter
-- Generates Setter methods for fields that implements the Collection interface (as XJC does not create them by default),
+- Generates Setter methods for fields defined with (maxOccurs="unbounded", as XJC does not create them by default),
 - Activate the plugin using -XvsSetter,
 - Uses Guava ImmutableList.copyOf(x) for a safe copy.
 
@@ -34,7 +34,42 @@ Uses Annox (https://github.com/highsource/jaxb2-annotate-plugin#usage-overview) 
 Configuration
 ===========
 
+XSD file
+===========
 ```xsd
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" attributeFormDefault="qualified"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"	
+	targetNamespace="http://www.xjc.vss.pt"
+	xmlns:tns="http://www.xjc.vss.pt">
+
+	<xsd:complexType name="AbstractEntity" abstract="true">
+		<xsd:attribute name="id" type="xsd:string"/>	
+	</xsd:complexType>	
+	
+	<xsd:element name="User">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="tns:AbstractEntity">
+					<xsd:sequence>
+						<xsd:element name="firstName" type="xsd:string"/>
+						<xsd:element name="lastName" type="xsd:string"/>
+						<xsd:element name="username" type="xsd:string"/>
+						<xsd:element name="password" type="xsd:string"/>
+						<xsd:element name="roles" type="xsd:string" maxOccurs="unbounded"/>
+						<xsd:element name="permissions" type="xsd:string" maxOccurs="unbounded"/>						
+					</xsd:sequence>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>	
+</xsd:schema>
+```
+
+Bindings file (bindings.xjb)
+===========
+```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <jaxb:bindings
     xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
@@ -121,7 +156,6 @@ Maven configuration
 
 Maven Dependency
 ===========
-
 ```xml
     <dependency>
 	 <groupId>com.github.vsspt</groupId>
