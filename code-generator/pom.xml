@@ -21,7 +21,7 @@
       <maven-release-plugin.version>2.5.1</maven-release-plugin.version>
       <maven-source-plugin.version>2.4</maven-source-plugin.version>
       <!-- dependency versions -->
-      <jaxb.xjcVersion>2.2.11</jaxb.xjcVersion>
+      <jaxb.coreVersion>2.2.11</jaxb.coreVersion>
       <jaxb2.basics.toolsVersion>0.9.1</jaxb2.basics.toolsVersion>
       <guavaVersion>18.0</guavaVersion>
    </properties>
@@ -59,16 +59,15 @@
       </developer>
    </developers>
    <dependencies>
-	<dependency>
-		<groupId>com.sun.xml.bind</groupId>
-		<artifactId>jaxb-core</artifactId>
-		<version>2.2.11</version>
-	</dependency>
-   
+      <dependency>
+         <groupId>com.sun.xml.bind</groupId>
+         <artifactId>jaxb-core</artifactId>
+         <version>${jaxb.coreVersion}</version>
+      </dependency>
       <dependency>
          <groupId>com.sun.xml.bind</groupId>
          <artifactId>jaxb-xjc</artifactId>
-         <version>${jaxb.xjcVersion}</version>
+         <version>${jaxb.coreVersion}</version>
          <scope>provided</scope>
       </dependency>
       <dependency>

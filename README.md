@@ -111,7 +111,6 @@ Bindings file (bindings.xjb)
 
 Maven configuration
 ===========
-
 ```xml
 <plugin>
             <!-- https://github.com/highsource/jaxb2-annotate-plugin -->
