@@ -109,18 +109,45 @@ Bindings file (bindings.xjb)
 </jaxb:bindings>
 ```
 
-Maven configuration
+Maven configuration Sample
 ===========
 ```xml
-<plugin>
-            <!-- https://github.com/highsource/jaxb2-annotate-plugin -->
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>com.github.vsspt</groupId>
+   <artifactId>xjc-code-generator-tests</artifactId>
+   <version>1.1.0</version>
+   <packaging>jar</packaging>
+   <name>Jaxb-Ri Plugin - toString, equals and hashCode Generation Test Project</name>
+   <url>https://github.com/vsspt/jaxb-ri-xjc/tree/master/sample-projects/code-generator</url>
+   <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <guavaVersion>18.0</guavaVersion>
+   </properties>   
+   <dependencies>
+      <dependency>
+         <groupId>com.github.vsspt</groupId>
+         <artifactId>jaxb-ri-xjc</artifactId>
+         <version>1.1.0</version>
+      </dependency>
+      <dependency>
+         <groupId>com.google.guava</groupId>
+         <artifactId>guava</artifactId>
+         <version>${guavaVersion}</version>
+      </dependency>      
+   </dependencies>
+   <build>
+      <finalName>${project.artifactId}-${project.version}</finalName>
+      <plugins>
+         <plugin>
             <groupId>org.jvnet.jaxb2.maven2</groupId>
             <artifactId>maven-jaxb2-plugin</artifactId>
             <configuration>
                <extension>true</extension>
                <args>
                   <arg>-Xannotate</arg>
-                  <arg>-XvsSetter</arg>  				  
+                  <arg>-XvsSetter</arg>                  
                   <arg>-XvsEqualsHashCode</arg>
                   <arg>-XvsToString</arg>
                   <arg>-XvsSerializable</arg>
@@ -137,9 +164,9 @@ Maven configuration
                      <version>1.0.0</version>
                   </plugin>
                   <plugin>
-                     <groupId>pt.vss.xjc</groupId>
-                     <artifactId>code-generator</artifactId>
-                     <version>1.0</version>
+                     <groupId>com.github.vsspt</groupId>
+                     <artifactId>jaxb-ri-xjc</artifactId>
+                     <version>1.1.0</version>
                   </plugin>
                </plugins>
             </configuration>
@@ -151,6 +178,14 @@ Maven configuration
                </execution>
             </executions>
          </plugin>
+         <plugin>
+            <inherited>true</inherited>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+         </plugin>
+      </plugins>
+   </build>
+</project>
 ```
 
 Maven Dependency
