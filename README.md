@@ -109,7 +109,7 @@ Bindings file (bindings.xjb)
 </jaxb:bindings>
 ```
 
-Maven configuration Sample
+Maven configuration Example
 ===========
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
