@@ -194,6 +194,6 @@ Maven Dependency
 <dependency>
  <groupId>com.github.vsspt</groupId>
  <artifactId>jaxb-ri-xjc</artifactId>
- <version>1.1.0</version>
+ <version>1.1.1</version>
 </dependency>
 ```	
