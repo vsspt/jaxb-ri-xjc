@@ -4,9 +4,9 @@
    <groupId>com.github.vsspt</groupId>
    <artifactId>jaxb-ri-xjc</artifactId>
    <packaging>jar</packaging>
-   <version>1.1.1-SNAPSHOT</version>
-   <name>Jaxb-Ri Plugin - toString, equals and hashCode Generation</name>
-   <description>Generates toString, equals and hashCode methods on JAXB generated classes.</description>
+   <version>1.1.0</version>
+   <name>Jaxb-Ri Plugin - toString, setter, equals and hashCode Generation</name>
+   <description>Generates toString, setter, equals and hashCode methods on JAXB generated classes.</description>
    <url>https://github.com/vsspt/jaxb-ri-xjc</url>
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -107,6 +107,7 @@
          </plugin>
       </plugins>
    </build>
+   <!--
    <profiles>
       <profile>
          <id>release</id>
@@ -159,4 +160,5 @@
          </build>
       </profile>
    </profiles>
+   -->
 </project>

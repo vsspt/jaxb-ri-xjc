@@ -191,9 +191,9 @@ Maven configuration Sample
 Maven Dependency
 ===========
 ```xml
-    <dependency>
-	 <groupId>com.github.vsspt</groupId>
-	 <artifactId>jaxb-ri-xjc</artifactId>
-	 <version>1.0.0</version>
-	</dependency>
+<dependency>
+ <groupId>com.github.vsspt</groupId>
+ <artifactId>jaxb-ri-xjc</artifactId>
+ <version>1.1.0</version>
+</dependency>
 ```	
