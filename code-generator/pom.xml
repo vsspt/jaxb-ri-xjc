@@ -106,7 +106,6 @@
          </plugin>
       </plugins>
    </build>
-   <!--
    <profiles>
       <profile>
          <id>release</id>
@@ -159,5 +158,4 @@
          </build>
       </profile>
    </profiles>
-   -->
 </project>
