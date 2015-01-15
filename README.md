@@ -129,7 +129,7 @@ Maven configuration Sample
       <dependency>
          <groupId>com.github.vsspt</groupId>
          <artifactId>jaxb-ri-xjc</artifactId>
-         <version>1.1.0</version>
+         <version>1.1.1</version>
       </dependency>
       <dependency>
          <groupId>com.google.guava</groupId>
@@ -166,7 +166,7 @@ Maven configuration Sample
                   <plugin>
                      <groupId>com.github.vsspt</groupId>
                      <artifactId>jaxb-ri-xjc</artifactId>
-                     <version>1.1.0</version>
+                     <version>1.1.1</version>
                   </plugin>
                </plugins>
             </configuration>
