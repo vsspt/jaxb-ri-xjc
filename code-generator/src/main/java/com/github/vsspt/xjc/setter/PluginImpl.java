@@ -17,6 +17,8 @@ import com.sun.codemodel.JInvocation;
 import com.sun.codemodel.JMethod;
 import com.sun.codemodel.JMod;
 import com.sun.codemodel.JVar;
+import com.sun.tools.xjc.generator.bean.field.UntypedListField;
+import com.sun.tools.xjc.outline.FieldOutline;
 
 public class PluginImpl extends AbstractVssPluginImpl {
 
@@ -24,6 +26,7 @@ public class PluginImpl extends AbstractVssPluginImpl {
   private static final String USAGE = "XvsSetter :  create setter accessors";
   private static final String OPERATION_PREFIX = "set";
   private static final String PARAM_NAME = "value";
+  private static final String COPY_OF = "copyOf";
 
   @Override
   public String getOptionName() {
@@ -49,6 +52,7 @@ public class PluginImpl extends AbstractVssPluginImpl {
   protected void generateMethod(final ClassRepresentation clazz, final List<JFieldVar> includeFields, final boolean hasSuperClassFields) {
 
     final JDefinedClass implClass = clazz.getClassOutline().implClass;
+    final List<String> listFieldNames = getListFieldNames(clazz.getClassOutline().getDeclaredFields());
 
     final List<JFieldVar> clonedList = new ArrayList<JFieldVar>();
     final Collection<JFieldVar> fields = implClass.fields().values();
@@ -57,16 +61,15 @@ public class PluginImpl extends AbstractVssPluginImpl {
       clonedList.addAll(implClass.fields().values());
 
       for (final JFieldVar field : clonedList) {
-        if (includeFields != null && includeFields.contains(field)) {
+
+        if (includeFields != null && includeFields.contains(field) && listFieldNames.contains(field.name())) {
 
           final JMethod method = implClass.method(JMod.PUBLIC, Void.TYPE, OPERATION_PREFIX + capitalizeFirstLetter(field.name()));
           final JVar var = method.param(JMod.FINAL, field.type(), PARAM_NAME);
-          
-          //TODO: Verify if field implements the Collection interface
 
           final JBlock block = new JBlock();
           final JClass immutableListClass = implClass.owner().ref(ImmutableList.class);
-          final JInvocation invocation = block.staticInvoke(immutableListClass, "copyOf");
+          final JInvocation invocation = block.staticInvoke(immutableListClass, COPY_OF);
 
           invocation.arg(var);
 
@@ -75,6 +78,22 @@ public class PluginImpl extends AbstractVssPluginImpl {
         }
       }
     }
+  }
+
+  private List<String> getListFieldNames(final FieldOutline[] fields) {
+
+    final List<String> values = new ArrayList<String>();
+    if (fields == null) {
+      return values;
+    }
+
+    for (final FieldOutline fo : fields) {
+      if (fo instanceof UntypedListField) {
+        values.add(fo.getPropertyInfo().getName(false));
+      }
+    }
+
+    return values;
   }
 
   private String capitalizeFirstLetter(final String value) {
