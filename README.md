@@ -197,3 +197,18 @@ Maven Dependency
  <version>1.1.1</version>
 </dependency>
 ```	
+
+What's new
+===========
+
+Version 1.1.1
+===========
+Small corrections
+
+Version 1.1.0
+===========
+Added Setter functionality
+
+Version 1.0.0
+===========
+Initial deployment
