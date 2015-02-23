@@ -3,7 +3,8 @@ jaxb-ri-xjc
 
 - Generates toString, equals and hashCode methods on JAXB generated classes
 - Generates Serializable
-- Generates Setter methods for fields defined with (maxOccurs="unbounded"),
+- Replaces javax.xml.datatype.XMLGregorianCalendar by java.util.Date
+- Replaces java.util.List by java.util.Set on fields defined with maxOccurs="unbounded"
 
 Usage overview
 ===========
@@ -21,10 +22,14 @@ Serializable
 - Generates ... "implements Serializable" in all classes,
 - Activate the plugin using -XvsSerializable-switch.
 
-Setter
-- Generates Setter methods for fields defined with (maxOccurs="unbounded", as XJC does not create them by default),
-- Activate the plugin using -XvsSetter,
-- Uses Guava ImmutableList.copyOf(x) for a safe copy.
+Date replacement
+- Replaces javax.xml.datatype.XMLGregorianCalendar by java.util.Date,
+- Activate the plugin using -XvsDate,
+
+Unbounded as Set
+- Replaces java.util.List by java.util.Set on fields defined with maxOccurs="unbounded"
+- Activate the plugin using -XvsHashset,
+- Uses Guava ImmutableSet.copyOf(x) for a safe copy.
 
 Current limitations
 ===========
@@ -57,6 +62,8 @@ XSD file
 						<xsd:element name="lastName" type="xsd:string"/>
 						<xsd:element name="username" type="xsd:string"/>
 						<xsd:element name="password" type="xsd:string"/>
+						<xsd:element name="created" type="xsd:date"/>
+						<xsd:element name="updated" type="xsd:date"/>						
 						<xsd:element name="roles" type="xsd:string" maxOccurs="unbounded"/>
 						<xsd:element name="permissions" type="xsd:string" maxOccurs="unbounded"/>						
 					</xsd:sequence>
@@ -95,14 +102,6 @@ Bindings file (bindings.xjb)
         <jaxb:bindings node="xsd:element[@name='User']/xsd:complexType/xsd:complexContent/xsd:extension/xsd:sequence/xsd:element[@name='password']">
             <annox:annotate target="field">@pt.vss.xjc.annotation.ExcludeOnToString</annox:annotate>
         </jaxb:bindings>
-		
-        <jaxb:bindings node="xsd:element[@name='User']/xsd:complexType/xsd:complexContent/xsd:extension/xsd:sequence/xsd:element[@name='roles']">
-            <annox:annotate target="field">@com.github.vsspt.xjc.annotation.Setter</annox:annotate>
-        </jaxb:bindings>  
-
-        <jaxb:bindings node="xsd:element[@name='User']/xsd:complexType/xsd:complexContent/xsd:extension/xsd:sequence/xsd:element[@name='permissions']">
-            <annox:annotate target="field">@com.github.vsspt.xjc.annotation.Setter</annox:annotate>
-        </jaxb:bindings> 		
 		
     </jaxb:bindings>
 
@@ -147,10 +146,11 @@ Maven configuration Example
                <extension>true</extension>
                <args>
                   <arg>-Xannotate</arg>
-                  <arg>-XvsSetter</arg>                  
                   <arg>-XvsEqualsHashCode</arg>
                   <arg>-XvsToString</arg>
                   <arg>-XvsSerializable</arg>
+				  <arg>-XvsDate</arg>				  
+				  <arg>-XvsHashset</arg>					  
                </args>
                <plugins>
                   <plugin>
@@ -200,6 +200,12 @@ Maven Dependency
 
 What's new
 ===========
+
+Version 2.0
+===========
+Removed Setter option
+Added XMLGregorianCalendar replacement functionality
+Added List replacement functionality
 
 Version 1.1.1
 ===========
