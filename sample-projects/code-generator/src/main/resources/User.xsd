@@ -18,6 +18,8 @@
 						<xsd:element name="lastName" type="xsd:string"/>
 						<xsd:element name="username" type="xsd:string"/>
 						<xsd:element name="password" type="xsd:string"/>
+						<xsd:element name="created" type="xsd:date"/>
+						<xsd:element name="updated" type="xsd:date"/>						
 						<xsd:element name="roles" type="xsd:string" maxOccurs="unbounded"/>
 						<xsd:element name="permissions" type="xsd:string" maxOccurs="unbounded"/>						
 					</xsd:sequence>

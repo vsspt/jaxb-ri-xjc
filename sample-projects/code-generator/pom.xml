@@ -33,10 +33,11 @@
                <extension>true</extension>
                <args>
                   <arg>-Xannotate</arg>
-                  <arg>-XvsSetter</arg>                  
                   <arg>-XvsEqualsHashCode</arg>
                   <arg>-XvsToString</arg>
                   <arg>-XvsSerializable</arg>
+				  <arg>-XvsDate</arg>				  
+				  <arg>-XvsHashset</arg>				  				  
                </args>
                <plugins>
                   <plugin>
