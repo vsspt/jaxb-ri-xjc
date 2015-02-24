@@ -45,4 +45,9 @@ public class PluginImpl extends AbstractReplacePluginImpl {
 		return false;
 	}
 
+	@Override
+	protected boolean assignOnFieldDeclaration() {
+		return false;
+	}
+
 }

@@ -29,7 +29,6 @@ Date replacement
 Unbounded as Set
 - Replaces java.util.List by java.util.Set on fields defined with maxOccurs="unbounded"
 - Activate the plugin using -XvsHashset,
-- Uses Guava ImmutableSet.copyOf(x) for a safe copy.
 
 Current limitations
 ===========
@@ -122,7 +121,6 @@ Maven configuration Example
    <url>https://github.com/vsspt/jaxb-ri-xjc/tree/master/sample-projects/code-generator</url>
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <guavaVersion>18.0</guavaVersion>
    </properties>   
    <dependencies>
       <dependency>
@@ -130,11 +128,6 @@ Maven configuration Example
          <artifactId>jaxb-ri-xjc</artifactId>
          <version>1.1.1</version>
       </dependency>
-      <dependency>
-         <groupId>com.google.guava</groupId>
-         <artifactId>guava</artifactId>
-         <version>${guavaVersion}</version>
-      </dependency>      
    </dependencies>
    <build>
       <finalName>${project.artifactId}-${project.version}</finalName>

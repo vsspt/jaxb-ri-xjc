@@ -5,6 +5,7 @@ import java.util.List;
 import org.jvnet.jaxb2_commons.util.FieldAccessorUtils;
 
 import com.github.vsspt.xjc.model.ClassRepresentation;
+import com.sun.codemodel.JClass;
 import com.sun.codemodel.JDefinedClass;
 import com.sun.codemodel.JExpr;
 import com.sun.codemodel.JFieldVar;
@@ -31,6 +32,8 @@ public abstract class AbstractReplacePluginImpl extends AbstractVssPluginImpl {
 
 	protected abstract boolean checkNull();
 
+	protected abstract boolean assignOnFieldDeclaration();
+
 	@Override
 	protected String getAnnotationName() {
 		return null;
@@ -47,21 +50,29 @@ public abstract class AbstractReplacePluginImpl extends AbstractVssPluginImpl {
 		final ClassOutline co = clazz.getClassOutline();
 
 		for (final FieldOutline fo : co.getDeclaredFields()) {
-			
+
 			if (fo.getRawType().fullName().startsWith(getReplaceableClass().getName())) {
 
 				final JFieldVar field = FieldAccessorUtils.field(fo);
-				final JType setType = co.parent().getCodeModel().ref(getInterfaceClass());
+				final List<JClass> typeParameters = ((JClass) field.type()).getTypeParameters();
+				final JClass inner = typeParameters.size() > 0 ? typeParameters.get(0) : null;
+				final JType setType = inner == null ? co.parent().getCodeModel().ref(getInterfaceClass()) : co.parent().getCodeModel().ref(getInterfaceClass()).narrow(inner);
+
 				field.type(setType);
 
-				replaceGetter(co, field);
-				replaceSetter(co, field);
+				if (assignOnFieldDeclaration()) {
+					final JType classType = co.parent().getCodeModel().ref(getImplementationClass());
+					field.assign(JExpr._new(classType));
+				}
+
+				replaceGetter(co, field, setType);
+				replaceSetter(co, field, setType);
 			}
 		}
 
 	}
 
-	private void replaceGetter(final ClassOutline co, final JFieldVar field) {
+	private void replaceGetter(final ClassOutline co, final JFieldVar field, final JType setType) {
 
 		// Create the method name
 		final String methodName = OPERATION_GET_PREFIX + capitalizeFirstLetter(field.name());
@@ -70,8 +81,7 @@ public abstract class AbstractReplacePluginImpl extends AbstractVssPluginImpl {
 		final JMethod oldGetter = co.implClass.getMethod(methodName, new JType[0]);
 		co.implClass.methods().remove(oldGetter);
 
-		// Create New Getter
-		final JMethod getter = co.implClass.method(JMod.PUBLIC, getInterfaceClass(), methodName);
+		final JMethod getter = co.implClass.method(JMod.PUBLIC, setType, methodName);
 
 		if (checkNull()) {
 			final JType classType = co.parent().getCodeModel().ref(getImplementationClass());
@@ -82,7 +92,7 @@ public abstract class AbstractReplacePluginImpl extends AbstractVssPluginImpl {
 		getter.body()._return(JExpr.ref(field.name()));
 	}
 
-	private void replaceSetter(final ClassOutline co, final JFieldVar field) {
+	private void replaceSetter(final ClassOutline co, final JFieldVar field, final JType setType) {
 
 		// Create the method name
 		final String methodName = OPERATION_SET_PREFIX + capitalizeFirstLetter(field.name());
@@ -96,7 +106,7 @@ public abstract class AbstractReplacePluginImpl extends AbstractVssPluginImpl {
 
 		// Create New Setter
 		final JMethod setter = co.implClass.method(JMod.PUBLIC, Void.TYPE, methodName);
-		final JVar var = setter.param(JMod.FINAL, getInterfaceClass(), PARAM_NAME);
+		final JVar var = setter.param(JMod.FINAL, setType, PARAM_NAME);
 
 		assignSetterValue(co.implClass, field, setter, var);
 	}

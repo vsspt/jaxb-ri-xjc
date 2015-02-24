@@ -17,11 +17,6 @@
          <artifactId>jaxb-ri-xjc</artifactId>
          <version>2.0.0</version>
       </dependency>
-      <dependency>
-         <groupId>com.google.guava</groupId>
-         <artifactId>guava</artifactId>
-         <version>${guavaVersion}</version>
-      </dependency>      
    </dependencies>
    <build>
       <finalName>${project.artifactId}-${project.version}</finalName>
@@ -33,11 +28,11 @@
                <extension>true</extension>
                <args>
                   <arg>-Xannotate</arg>
+				  <arg>-XvsDate</arg>				  
+				  <arg>-XvsHashset</arg>				  				  
                   <arg>-XvsEqualsHashCode</arg>
                   <arg>-XvsToString</arg>
                   <arg>-XvsSerializable</arg>
-				  <arg>-XvsDate</arg>				  
-				  <arg>-XvsHashset</arg>				  				  
                </args>
                <plugins>
                   <plugin>
