@@ -194,12 +194,10 @@ Maven Dependency
 What's new
 ===========
 
-Version 2.0
+Version 2.0.0
 ===========
 Removed Setter option
-
 Added XMLGregorianCalendar replacement functionality
-
 Added List replacement functionality
 
 Version 1.1.1
