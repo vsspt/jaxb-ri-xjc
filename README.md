@@ -187,7 +187,7 @@ Maven Dependency
 <dependency>
  <groupId>com.github.vsspt</groupId>
  <artifactId>jaxb-ri-xjc</artifactId>
- <version>1.1.1</version>
+ <version>2.0.0</version>
 </dependency>
 ```	
 
@@ -197,7 +197,9 @@ What's new
 Version 2.0
 ===========
 Removed Setter option
+
 Added XMLGregorianCalendar replacement functionality
+
 Added List replacement functionality
 
 Version 1.1.1
