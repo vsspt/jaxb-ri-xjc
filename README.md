@@ -196,18 +196,18 @@ What's new
 
 Version 2.0.0
 ===========
-Removed Setter option
-Added XMLGregorianCalendar replacement functionality
-Added List replacement functionality
+- Removed Setter option
+- Added XMLGregorianCalendar replacement functionality
+- Added List replacement functionality
 
 Version 1.1.1
 ===========
-Small corrections
+- Small corrections
 
 Version 1.1.0
 ===========
-Added Setter functionality
+- Added Setter functionality
 
 Version 1.0.0
 ===========
-Initial deployment
+- Initial deployment
